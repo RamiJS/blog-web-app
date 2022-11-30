@@ -31,8 +31,9 @@ module.exports.user_posts = async(req, res) => {
 
 module.exports.upload_posts = async(req, res, next) => {
     const { content, title } = req.body
-    var userId = req.session.user._id;
-    console.log(userId);
+    const userId = req.session.user._id;
+    console.log("🚀 ~ file: postsController.js:36 ~ module.exports.upload_posts=async ~ userId", userId)
+
             try {
                 let postedBy = userId
                 const post = await Posts.create({ postedBy, content, title});

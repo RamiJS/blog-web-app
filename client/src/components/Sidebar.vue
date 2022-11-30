@@ -16,13 +16,13 @@
             </router-link>
         </li>
         <li v-if="isAdmin" class="py-6 mx-auto">
-            <a href="" class="hover:text-purple text-black-100/70 transition duration-300 ease-in-out">
+            <router-link to="/writeblog" class="hover:text-purple text-black-100/70 transition duration-300 ease-in-out">
                 <component
                 :is="PencilSquareIcon"
                 class="w-[36px] h-[36px]"
                 >
                 </component>
-            </a>
+            </router-link>
         </li>
     </ul>
   </section>

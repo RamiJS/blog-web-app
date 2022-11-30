@@ -99,6 +99,7 @@ module.exports.login_post = async(req, res) => {
         req.session.user = user;
         console.log(req.session.user);
         res.status(200).json({ user: user._id, email: user.email, username: user.username, roles: user.roles });
+        console.log('user session ' + req.session.user);
     }
     catch(err) {
         const errors = handleError(err);

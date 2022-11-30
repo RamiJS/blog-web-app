@@ -1,5 +1,6 @@
 import { Axios } from 'axios'
 import { createStore } from 'vuex'
+import createPersistedState from "vuex-persistedstate";
 const axios = new Axios()
 import router from "@/router"
 
@@ -58,6 +59,7 @@ try {
       try {
        const res = await fetch('http://localhost:3000/login', {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify({ email: email, password: password})
        })
@@ -88,5 +90,6 @@ try {
 
   },
   modules: {
-  }
+  },
+  plugins: [createPersistedState()]
 })

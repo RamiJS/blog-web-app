@@ -5,6 +5,7 @@ import LoginView from '@/views/LoginView.vue'
 import UserFeedView from '@/views/UserFeedView.vue'
 import SingleBlogView from '@/views/SingleBlogView.vue'
 import UserDetails from '@/components/UserDetails.vue'
+import WireBlogsView from '@/views/WriteBlogsView.vue'
 
 const routes = [
   {
@@ -34,6 +35,11 @@ const routes = [
     props: route => ({
       id: route.params.id
     }),
+  },
+  {
+    path: '/writeblog',
+    name: 'writeview',
+    component: WireBlogsView,
   },
   // {
   //   path: '/feed/:id',

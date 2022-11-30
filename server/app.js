@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser');
 const { requireAuth, checkUser } = require('./middleware/authMiddleware');
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const MongoDBStore = require( "connect-mongodb-session");
 
 const session = require('express-session');
 
@@ -17,39 +18,42 @@ const app = express();
 
 // middleware
 
+
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded(
   { extended:true }
 ))
 app.use(express.json());
 app.use(cookieParser())
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*")
-  next()
-}) 
 
 app.use(session({
-  secret: 'i am not fat',
+  secret: 'testing',
   resave: true,
   saveUninitialized: false,
   cookie: {
+    sameSite: false,
+    secure: false,
+    maxAge: 1*60*60*1000,
     httpOnly: true,
-    maxAge: 1*60*60*1000
   }
 }))
+
+const corsOptions ={
+  origin: 'http://localhost:8080', 
+  methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
+  credentials:true,          
+  optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:8080")
+  next()
+}) 
 
 // app.use((req, res, next) => {
 //   console.log('DEBUG: req.session', req.session);
 //   next();
 // });
-
-
-const corsOptions ={
-  origin:'http://localhost:8080', 
-  credentials:true,            //access-control-allow-credentials:true
-  optionSuccessStatus:200
-}
-app.use(cors(corsOptions));
 
 // view engine
 app.set('view engine', 'ejs');
