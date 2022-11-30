@@ -30,13 +30,13 @@ module.exports.user_posts = async(req, res) => {
  
 
 module.exports.upload_posts = async(req, res, next) => {
-    const { content, title } = req.body
+    const { content, title, brief } = req.body
     const userId = req.session.user._id;
     console.log("🚀 ~ file: postsController.js:36 ~ module.exports.upload_posts=async ~ userId", userId)
 
             try {
                 let postedBy = userId
-                const post = await Posts.create({ postedBy, content, title});
+                const post = await Posts.create({ postedBy, content, title, brief});
                 res.status(201).json({ post: post._id,  postedBy})
             } catch (err) {
                 res.status(404).send(err)

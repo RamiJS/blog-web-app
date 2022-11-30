@@ -40,6 +40,9 @@ const userSchema = new Schema({
     image: {
         type: String,
         default: 'http://place-puppy.com/200x200'
+    },
+    status: {
+        type: String,
     }
 });
 

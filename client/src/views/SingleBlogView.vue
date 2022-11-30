@@ -1,6 +1,6 @@
 <template>
-     <section class="py-[50px] px-[120px] w-full">
-        <div class="flex flex-col max-w-[700px] ">
+     <section class="py-[50px] px-[120px]">
+        <div class="flex flex-col max-w-[700px]">
             <div class="flex flex-row justify-between items-center gap-5">
                 <div class="flex flex-row gap-5 items-center">
                     <img class="w-14 h-14 rounded-full" :src="blog.postedBy.image" alt="user img" />
@@ -19,9 +19,10 @@
                 <h1 class="text-black-300 text-4xl font-bold first-letter:uppercase">{{blog.title}}</h1>
                 <p class="text-2xl text-black-100/70 py-3">{{blog.brief}}</p>
                 <img class="w-full py-3" :src="blog.image" alt="">
-                <p class="text-xl text-black-100 py-7">
-                    {{blog.content}}
-                </p>
+                <div 
+                    class="text-xl text-black-100 py-7" 
+                    v-html="blog.content">
+                </div>
             </div>
         </div>
     </section>

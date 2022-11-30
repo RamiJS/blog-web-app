@@ -18,6 +18,15 @@ const postSchema = new Schema({
         required: true,
         minLength: 200
     },
+    brief: {
+        type: String,
+        required: true,
+        minLength: 25
+    },
+    image: {
+        type: String,
+        default: 'http://place-puppy.com/500x500'
+    },
     comments: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'comments'
@@ -25,8 +34,8 @@ const postSchema = new Schema({
     likedBy: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
-    }]
-    ,
+    }],
+
     // likesCount: {
     //     type: Number,
     //     default: 0
