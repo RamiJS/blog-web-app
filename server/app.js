@@ -40,15 +40,17 @@ app.use(session({
 
 const corsOptions ={
   origin: 'http://localhost:8080', 
-  methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
+  methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD", "PATCH"],
   credentials:true,          
   optionSuccessStatus:200
 }
 app.use(cors(corsOptions));
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:8080")
-  next()
-}) 
+
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "http://localhost:8080")
+//   res.header("Access-Control-Allow-Methods", 'GET, POST, PUT, DELETE, OPTIONS')
+//   next()
+// }) 
 
 // app.use((req, res, next) => {
 //   console.log('DEBUG: req.session', req.session);

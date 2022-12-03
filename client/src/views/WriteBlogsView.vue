@@ -44,7 +44,10 @@ export default {
         }
 
         const handleSubmit = async () => {
-            try {await axios.post('http://localhost:3000/post', {content: content.value, title: title.value, brief: brief.value}, config).then(response => {
+            try {
+                await axios.post('http://localhost:3000/post',
+                 {content: content.value, title: title.value, brief: brief.value},
+                  config).then(response => {
                 console.log(response);
             }) 
         } catch(err) {

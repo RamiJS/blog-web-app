@@ -98,7 +98,7 @@ module.exports.login_post = async(req, res) => {
         const user = await User.login(email, password);
         req.session.user = user;
         console.log(req.session.user);
-        res.status(200).json({ user: user._id, email: user.email, username: user.username, roles: user.roles });
+        res.status(200).json({ user: user._id, email: user.email, username: user.username, roles: user.roles, likes: user.likes });
         console.log('user session ' + req.session.user);
     }
     catch(err) {

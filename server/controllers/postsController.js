@@ -125,3 +125,10 @@ module.exports.delete_post = async(req, res, next) =>{
         res.sendStatus(401)
       }
 }
+
+
+module.exports.user_likes = async function (req, res) {
+    const userId = req.session.user._id
+    let userLikes = await User.findById(userId).select('-image -roles -username -email -status -password').populate('likes')
+    res.status(200).json(userLikes)
+}

@@ -12,7 +12,7 @@
                 <div class="flex flex-row gap-3">
                     <button><img class="w-5 h-5" src="@/assets/icons/report.svg" alt=""></button>
                     <button><img class="w-5 h-5" src="@/assets/icons/shareLink.svg" alt=""></button>
-                    <button><img class="w-5 h-5" src="@/assets/icons/bookmark.svg" alt=""></button>
+                    <button @click="addToBookmarks"><img class="w-5 h-5" src="@/assets/icons/bookmark.svg" alt=""></button>
                 </div>
             </div>
             <div class="py-12">
@@ -72,9 +72,30 @@ import { useRoute } from 'vue-router';
              
           }
           getBlogs()
+
+
+          
+          const config = {
+            headers: {
+            "Content-Type": "application/json"
+            },
+            withCredentials: true
+           }
+
+          const addToBookmarks = async () => {
+            try {
+            await axios.patch(`${uri}/like`, config)
+            .then((res) => console.log(res))
+            } catch(err) {
+                console.log(err);
+            }
+          }
   
   
-          return { blog }
+          return { 
+            blog,
+            addToBookmarks
+         }
       }
       
   }

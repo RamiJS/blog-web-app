@@ -6,7 +6,7 @@ import router from "@/router"
 
 export default createStore({
   state: {
-    authUser: { username: null, email: null, roles: null, likes: null,},
+    authUser: { username: null, email: null, roles: null, likes: [''],},
     postedByDetails: {title: '', content: '', brief: '', image: '', createdAt: '', comments: '', likedBy: '', postedBy: ''}
   },
   getters: {

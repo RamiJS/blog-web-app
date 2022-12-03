@@ -5,7 +5,8 @@ import LoginView from '@/views/LoginView.vue'
 import UserFeedView from '@/views/UserFeedView.vue'
 import SingleBlogView from '@/views/SingleBlogView.vue'
 import UserDetails from '@/components/UserDetails.vue'
-import WireBlogsView from '@/views/WriteBlogsView.vue'
+import WriteBlogsView from '@/views/WriteBlogsView.vue'
+import BookMarksView from '@/views/BookMarksView.vue'
 
 const routes = [
   {
@@ -39,7 +40,12 @@ const routes = [
   {
     path: '/writeblog',
     name: 'writeview',
-    component: WireBlogsView,
+    component: WriteBlogsView,
+  },
+  {
+    path: '/bookmarks',
+    name: 'bookmarks',
+    component: BookMarksView,
   },
   // {
   //   path: '/feed/:id',

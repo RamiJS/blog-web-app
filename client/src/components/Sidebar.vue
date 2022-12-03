@@ -40,7 +40,7 @@ export default {
         const navItems = [
             {title: "Home", icon: HomeIcon, href: '/feed'},
             {title: "Notification", icon: BellIcon, href: '/#'},
-            {title: "Bookmarks", icon: BookmarkIcon, href: '/#'},
+            {title: "Bookmarks", icon: BookmarkIcon, href: '/bookmarks'},
             // {title: "Create a blog", icon: PencilSquareIcon, href: '/#'},
         ]
 
