@@ -4,8 +4,10 @@ const UserComment = require('../models/CommentSchema')
 const jwt = require('jsonwebtoken')
 
 module.exports.all_posts = async(req, res) => {
-    let AllPosts = await Posts.find().select('-updatedAt -__v').populate('comments likedBy postedBy comments.postedBy').sort({createdAt: -1})
-    res.status(200).json(AllPosts)
+    let AllPosts = await Posts.find().select('-updatedAt -__v').populate('comments likedBy postedBy comments.postedBy').sort({createdAt: -1}) // .filter({isDeleted: false})
+    console.log(AllPosts);
+    let data = AllPosts.filter(x => x.isDeleted == false)
+    res.status(200).json(data)
 }
 
 module.exports.one_post = async(req, res) => {
@@ -96,39 +98,77 @@ module.exports.update_post = async(req, res, next) =>{
 
 }
 
+
+
 module.exports.delete_post = async(req, res, next) =>{
     let postId = req.params.id
-//we wanna know what the post is, so we could use its postedBy entity to compare it with the user
-// then we wanna create an IF function to delete posts if user id and postedBy match
 
     let post = await Posts.findById(postId)
+
+
     let userId = req.session.user._id
 
-
     if(userId == post.postedBy) {
-        try { 
-            var deletePost = await Posts.findByIdAndDelete(postId, function (err, docs) {
-                if (err) {
-                    console.log(err);
-                    res.sendStatus(400)
-                } else {
-                    console.log('deleted successfully');
-                    res.status(200).send('deleted successfully');
-                }
-                }) 
-        } catch(err) {
+        try {
+            post = await Posts.findByIdAndUpdate(postId, { $set: { isDeleted: true }}, { new: true } ) 
+                  
+             res.status(200).json({isDeleted: post.isDeleted})
+                   
+            
+        } catch (err) {
             console.log(err);
             res.sendStatus(400)
         }
-      }   else {
+    }
+    else {
         console.log('YOU ARE NOT AUTHORIZED');
         res.sendStatus(401)
-      }
+    }
+    next()
 }
+
+// module.exports.delete_post = async(req, res, next) =>{
+//     let postId = req.params.id
+
+//we wanna know what the post is, so we could use its postedBy entity to compare it with the user
+// then we wanna create an IF function to delete posts if user id and postedBy match
+
+//     let post = await Posts.findById(postId)
+//     let userId = req.session.user._id
+
+
+//     if(userId == post.postedBy) {
+//         try { 
+//             var deletePost = await Posts.findByIdAndDelete(postId, function (err, docs) {
+//                 if (err) {
+//                     console.log(err);
+//                     res.sendStatus(400)
+//                 } else {
+//                     console.log('deleted successfully');
+//                     res.status(200).send('deleted successfully');
+//                 }
+//                 }) 
+//         } catch(err) {
+//             console.log(err);
+//             res.sendStatus(400)
+//         }
+//       }   else {
+//         console.log('YOU ARE NOT AUTHORIZED');
+//         res.sendStatus(401)
+//       }
+// }
+
 
 
 module.exports.user_likes = async function (req, res) {
-    const userId = req.session.user._id
-    let userLikes = await User.findById(userId).select('-image -roles -username -email -status -password').populate('likes')
-    res.status(200).json(userLikes)
+    const userId = req.params.id
+    let userLikes = await User.findById(userId).select('-image -roles -username -email -status -password').populate('likes').sort({createdAt: -1})
+    let data = userLikes.likes.filter(x => x.isDeleted == false)
+    // console.log(userLikes.likes.filter(x => x.isDeleted == false));
+        // const data = userLikes.filter(x => x.isDeleted == false);
+   
+    // console.log(data);
+    // data.push(userLikes)
+    // console.log(data.filter(x => x.isDeleted == false));
+    res.status(200).json(data)
 }

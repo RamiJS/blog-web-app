@@ -4,9 +4,9 @@ import SignupView from '@/views/SignupView.vue'
 import LoginView from '@/views/LoginView.vue'
 import UserFeedView from '@/views/UserFeedView.vue'
 import SingleBlogView from '@/views/SingleBlogView.vue'
-import UserDetails from '@/components/UserDetails.vue'
 import WriteBlogsView from '@/views/WriteBlogsView.vue'
 import BookMarksView from '@/views/BookMarksView.vue'
+import ProfileView from '@/views/ProfileView.vue'
 
 const routes = [
   {
@@ -47,12 +47,11 @@ const routes = [
     name: 'bookmarks',
     component: BookMarksView,
   },
-  // {
-  //   path: '/feed/:id',
-  //   name: 'detail',
-  //   component: UserDetails,
-  //   props: true
-  // },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: ProfileView,
+  },
 ]
 
 const router = createRouter({

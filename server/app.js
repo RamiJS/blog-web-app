@@ -64,10 +64,15 @@ app.set('view engine', 'ejs');
 // const dbURI = 'mongodb+srv://admin:1234@cluster0.wvcjn.mongodb.net/?retryWrites=true&w=majority';
 const dbURI = 'mongodb://localhost:27017/blogProject';
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true, useFindAndModify: false})
-  .then((result) => app.listen(3000, console.log(result.Connection, 'hi')))
+  .then((result) => app.listen(3000, console.log("\x1b[34m", result.Connection)))
   .catch((err) => console.log(err));
 
-
+  process.on('unhandledRejection', (reason, promise) => {
+    console.log('Unhandled Rejection at:', reason.stack || reason)
+    // Recommended: send the information to sentry.io
+    // or whatever crash reporting service you use
+  })
+  
 // routes
 app.get('*', checkUser);
 app.get('/', (req, res) => res.render('home'));

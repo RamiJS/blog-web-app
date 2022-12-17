@@ -6,17 +6,19 @@ import router from "@/router"
 
 export default createStore({
   state: {
-    authUser: { username: null, email: null, roles: null, likes: [''],},
+    authUser: { username: null, email: null, roles: null, likes: [''], image: null,id: null},
     postedByDetails: {title: '', content: '', brief: '', image: '', createdAt: '', comments: '', likedBy: '', postedBy: ''}
   },
   getters: {
   },
   mutations: {
     setUser(state, payload) {
+      state.authUser.id = payload.id
       state.authUser.username = payload.username
       state.authUser.email = payload.email
       state.authUser.roles = payload.roles
       state.authUser.likes = payload.likes
+      state.authUser.image = payload.image
       console.log(state.authUser);
     },
     setBlogDetails(state, payload) {

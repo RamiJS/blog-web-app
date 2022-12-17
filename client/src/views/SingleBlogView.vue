@@ -1,9 +1,9 @@
 <template>
-     <section class="py-[50px] px-[120px]">
+    <section class="py-[50px] px-[120px]">
         <div class="flex flex-col max-w-[700px]">
-            <div class="flex flex-row justify-between items-center gap-5">
-                <div class="flex flex-row gap-5 items-center">
-                    <img class="w-14 h-14 rounded-full" :src="blog.postedBy.image" alt="user img" />
+            <div class="flex flex-row items-center justify-between gap-5">
+                <div class="flex flex-row items-center gap-5">
+                    <img class="rounded-full w-14 h-14" :src="blog.postedBy.image" alt="user img" />
                     <div class="flex flex-col">
                         <p class="text-base text-black-100">{{blog.postedBy.username}}</p>
                         <p class="text-sm text-black-100/70">{{blog.createdAt.split('T')[0].split('-')[2] + ', ' +blog.createdAt.split('T')[0].split('-')[0]}}</p>
@@ -13,11 +13,12 @@
                     <button><img class="w-5 h-5" src="@/assets/icons/report.svg" alt=""></button>
                     <button><img class="w-5 h-5" src="@/assets/icons/shareLink.svg" alt=""></button>
                     <button @click="addToBookmarks"><img class="w-5 h-5" src="@/assets/icons/bookmark.svg" alt=""></button>
-                </div>
+                    <button @click="deletePost" v-if="store.state.postedByDetails.postedBy._id == store.state.authUser.id"><img class="w-5 h-5" src="@/assets/icons/trashIcon.svg" alt="trash icon"></button>
+                  </div>
             </div>
             <div class="py-12">
-                <h1 class="text-black-300 text-4xl font-bold first-letter:uppercase">{{blog.title}}</h1>
-                <p class="text-2xl text-black-100/70 py-3">{{blog.brief}}</p>
+                <h1 class="text-4xl font-bold text-black-300 first-letter:uppercase">{{blog.title}}</h1>
+                <p class="py-3 text-2xl text-black-100/70">{{blog.brief}}</p>
                 <img class="w-full py-3" :src="blog.image" alt="">
                 <div 
                     class="text-xl text-black-100 py-7" 
@@ -32,13 +33,18 @@
   import axios from 'axios'
   import { ref } from '@vue/reactivity';
 import { useRoute } from 'vue-router';
-  
+  import { useStore } from 'vuex';
+import store from '@/store';
   export default {
       props: ['id'],
   
       setup() {
         const route = useRoute()
-          const uri = "http://localhost:3000/posts/" + route.params.id
+        const uri = "http://localhost:3000/posts/" + route.params.id
+
+        const store = useStore();
+
+
 
         const blog = ref({
             title: '',
@@ -90,11 +96,16 @@ import { useRoute } from 'vue-router';
                 console.log(err);
             }
           }
-  
+
+          const deletePost = async () => {
+            axios.patch(uri + '/delete').then((res) => console.log(res))
+          }
   
           return { 
             blog,
-            addToBookmarks
+            addToBookmarks,
+            deletePost,
+            store
          }
       }
       

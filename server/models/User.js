@@ -28,10 +28,10 @@ const userSchema = new Schema({
         required: [true, 'Please enter a password'],
         minlength: [4, 'Please enter at least 4 characters'],
     },
-    likes: {
+    likes: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'posts'
-    },
+    }],
     roles: {
         type: String,
         default: 'user',

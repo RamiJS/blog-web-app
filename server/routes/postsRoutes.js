@@ -13,6 +13,6 @@ router.post('/post', postsController.upload_posts)
 router.patch('/posts/:id/like', postsController.like) 
 router.patch('/posts/:id/update', postsController.update_post)
 
-router.delete('/posts/:id/delete', postsController.delete_post)
+router.patch('/posts/:id/delete', postsController.delete_post)
 
 module.exports = router;
