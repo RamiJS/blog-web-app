@@ -25,34 +25,19 @@
             </router-link>
         </li>
         <li class="py-6 mx-auto">
-            <Menu>
-    <MenuButton>
-        <img class="w-[36px] h-[36px]" :src="store.state.authUser.image" alt="">
-    </MenuButton>
-    <MenuItems>
-      <MenuItem>
-        <router-link to="/feed" >
-          Account settings
-        </router-link>
-        <router-link to="/feed" class='ui-active:bg-blue-500'>
-          Account settings
-        </router-link>
-      </MenuItem>
-      
-    </MenuItems>
-  </Menu>
+           <MenuDropdown class="w-[36px] h-[36px]" />
         </li>
     </ul>
   </section>
 </template>
 
 <script>
-import { HomeIcon, BookmarkIcon, PencilSquareIcon, BellIcon } from '@heroicons/vue/24/outline'
+import { HomeIcon, BookmarkIcon, PencilSquareIcon, BellIcon, UserIcon } from '@heroicons/vue/24/outline'
 import { computed } from '@vue/reactivity';
 import { useStore } from 'vuex'
-import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
+import MenuDropdown from './MenuDropdown.vue'
 export default {
-    component: {Menu, MenuButton, MenuItems, MenuItem},
+    components: {MenuDropdown},
     setup(){
         const store = useStore();
 
@@ -69,7 +54,7 @@ export default {
         })
 
 
-        return { navItems, store, PencilSquareIcon, isAdmin }
+        return { navItems, store, PencilSquareIcon, isAdmin, MenuDropdown }
     }
 
 

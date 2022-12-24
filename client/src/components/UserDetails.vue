@@ -20,7 +20,6 @@
  <script>
  import axios from 'axios'
  import { reactive, ref } from '@vue/reactivity'; 
-import { useRoute } from 'vue-router';
 import { onMounted } from 'vue';
  import { useStore } from 'vuex'
  export default {
@@ -28,7 +27,6 @@ import { onMounted } from 'vue';
  
 setup() {
 
-    const route = useRoute()
     const store = useStore()
     
         

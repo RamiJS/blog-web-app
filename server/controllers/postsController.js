@@ -20,11 +20,12 @@ module.exports.one_post = async(req, res) => {
 // get posts by a single user
 module.exports.user_posts = async(req, res) => {
     const token = req.cookies.jwt;
-    var userId = req.session.user._id
+    var userId = req.params.id
 
         try {
-            let userPosts = await Posts.find({postedBy: userId}).sort({createdAt: -1})
-            res.status(200).json(userPosts)
+            let userPosts = await Posts.find({postedBy: userId}).populate('postedBy').sort({createdAt: -1})
+            let data = userPosts.filter(x => x.isDeleted == false)
+            res.status(200).json(data)
         } catch (err) {
             console.log(err)
         } 
@@ -162,7 +163,7 @@ module.exports.delete_post = async(req, res, next) =>{
 
 module.exports.user_likes = async function (req, res) {
     const userId = req.params.id
-    let userLikes = await User.findById(userId).select('-image -roles -username -email -status -password').populate('likes').sort({createdAt: -1})
+    let userLikes = await User.findById(userId).populate({path: 'likes', populate: {path: 'postedBy'}}).sort({createdAt: -1})
     let data = userLikes.likes.filter(x => x.isDeleted == false)
     // console.log(userLikes.likes.filter(x => x.isDeleted == false));
         // const data = userLikes.filter(x => x.isDeleted == false);

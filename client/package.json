@@ -9,7 +9,8 @@
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^35.3.2",
     "@ckeditor/ckeditor5-vue": "^4.0.1",
-    "@headlessui/vue": "^1.7.4",
+    "@headlessui/tailwindcss": "^0.1.2",
+    "@headlessui/vue": "^1.7.7",
     "@heroicons/vue": "^2.0.13",
     "autoprefixer": "^10",
     "axios": "^1.2.0",

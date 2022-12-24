@@ -1,6 +1,4 @@
 <template>
-    <section class="">
-        
         <router-link @click="sendParam" :to="{ name: 'blog', params: { id: blog._id } }" class="flex flex-row gap-2 my-6 lg:gap-8">
             
             <div class="h-[150px] w-[120px] lg:w-[200px] lg:h-[180px] flex-shrink-0 my-auto">
@@ -23,8 +21,6 @@
             </div>
             
         </router-link>
-            
-    </section>
 </template>
 
 <script>

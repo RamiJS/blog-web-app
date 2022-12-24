@@ -1,6 +1,6 @@
 <template>
-    <section class="py-[50px] px-[120px]">
-        <div class="flex flex-col max-w-[700px]">
+    <section class="py-[30px] px-4 lg:px-10 w-7xl max-w-7xl">
+        <div class="flex flex-col">
             <div class="flex flex-row items-center justify-between gap-5">
                 <div class="flex flex-row items-center gap-5">
                     <img class="rounded-full w-14 h-14" :src="blog.postedBy.image" alt="user img" />

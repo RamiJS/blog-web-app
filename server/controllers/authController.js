@@ -136,6 +136,16 @@ module.exports.update_patch = async(req, res, next) => {
 
 
 module.exports.logout_get = (req, res) => {
-    res.cookie('jwt', '', { maxAge: 1 })
-    res.redirect('/login');
+    if (req.session) {
+        req.session.destroy(err => {
+            if(err) {
+                res.status(400).send('Unable to logout')
+            }
+            else {
+                res.send('User logged out successfully')
+            }
+        })
+    } else {
+        res.end()
+    }
 }

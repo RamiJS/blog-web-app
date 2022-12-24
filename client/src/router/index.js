@@ -7,6 +7,8 @@ import SingleBlogView from '@/views/SingleBlogView.vue'
 import WriteBlogsView from '@/views/WriteBlogsView.vue'
 import BookMarksView from '@/views/BookMarksView.vue'
 import ProfileView from '@/views/ProfileView.vue'
+import store from '@/store/index';
+
 
 const routes = [
   {
@@ -26,8 +28,14 @@ const routes = [
   },
   {
     path: '/feed',
-    name: 'UserFeed',
-    component: UserFeedView
+    name: 'feed',
+    component: UserFeedView,
+    beforeEnter: (to, from) => {
+      // ...
+      const signedIn = store.state.authUser.username
+      console.log('beforeEnter log' + ' ' + signedIn);
+      if(signedIn == null) return { name: 'login' }
+    }
   },
   {
     path: '/feed/:id',
@@ -41,16 +49,27 @@ const routes = [
     path: '/writeblog',
     name: 'writeview',
     component: WriteBlogsView,
+    beforeEnter: (to, from) => {
+      // ...
+      const user = store.state.authUser
+      console.log('beforeEnter log' + ' ' + user);
+      if(user.username == null) return { name: 'login' }
+      else if(user.roles == 'user') return { name: 'feed' } 
+    }
   },
   {
     path: '/bookmarks',
     name: 'bookmarks',
     component: BookMarksView,
+    props: true
   },
   {
-    path: '/profile',
+    path: '/profile/:id',
     name: 'profile',
     component: ProfileView,
+    props: route => ({
+      id: route.params.id
+    }),
   },
 ]
 
