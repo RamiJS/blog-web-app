@@ -61,7 +61,14 @@ const routes = [
     path: '/bookmarks',
     name: 'bookmarks',
     component: BookMarksView,
-    props: true
+    props: true,
+    beforeEnter: (to, from) => {
+      // ...
+      const user = store.state.authUser
+      console.log('beforeEnter log' + ' ' + user);
+      if(user.username == null) return { name: 'login' }
+      else if(user.roles == 'user') return { name: 'feed' } 
+    }
   },
   {
     path: '/profile/:id',

@@ -1,5 +1,5 @@
 <template>
-<section class="w-screen bg-sky py-20  grid grid-rows-1 xl:grid-rows-1 grid-cols-1 xl:grid-cols-2 gap-5">
+<section class="w-full bg-sky py-20 grid grid-rows-1 xl:grid-rows-1 grid-cols-1 xl:grid-cols-2 gap-5">
     <div class="flex flex-col items-start justify-center">
         <h1 class="text-5xl md:text-8xl font-medium text-black-200">
             Be Curious

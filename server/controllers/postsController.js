@@ -3,6 +3,7 @@ const User = require('../models/User')
 const UserComment = require('../models/CommentSchema')
 const jwt = require('jsonwebtoken')
 
+
 module.exports.all_posts = async(req, res) => {
     let AllPosts = await Posts.find().select('-updatedAt -__v').populate('comments likedBy postedBy comments.postedBy').sort({createdAt: -1}) // .filter({isDeleted: false})
     console.log(AllPosts);

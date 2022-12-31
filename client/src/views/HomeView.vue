@@ -7,7 +7,7 @@
 
     <Trending class="py-10 px-8 sm:px-6 lg:px-[250px]" />
 
-
+    <Footer class="py-10 px-8 sm:px-6 lg:px-[250px]" />
 
     <!-- <div v-if="data.length">
       <div v-for="item in data" :key="item.id">
@@ -25,6 +25,7 @@ import { ref } from '@vue/runtime-core'
 import HomeNav from '@/components/HomeNav.vue'
 import FirstSection from '@/components/HomeComponents/FirstSection.vue'
 import Trending from '../components/Trending.vue'
+import Footer from '../components/HomeComponents/Footer.vue'
 export default {
   name: '',
   components: {
@@ -32,6 +33,7 @@ export default {
     HomeNav,
     FirstSection,
     Trending,
+    Footer,
 },
 
   setup() {

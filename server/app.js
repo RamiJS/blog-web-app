@@ -74,9 +74,6 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCr
   })
   
 // routes
-app.get('*', checkUser);
-app.get('/', (req, res) => res.render('home'));
-app.get('/smoothies', requireAuth, (req, res) => res.render('smoothies'));
 app.use(authRoutes)
 app.use(fileRoutes)
 app.use(postsRoutes)

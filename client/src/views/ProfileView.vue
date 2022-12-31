@@ -2,7 +2,11 @@
   <section class="flex flex-col lg:py-[30px] lg:px-10 w-full ">
     <div class="relative self-start pb-16">
       <img class="w-screen h-52" src="@/assets/images/banner.jpg" alt="banner">
-      <img class="w-[124px] h-[124px] absolute bottom-2 left-5 rounded-full" :src="store.state.authUser.image" alt="">
+      <img class="w-[124px] h-[124px] absolute bottom-2 left-5 rounded-full" :src="store.state.authUser.image" alt="profile img">
+    </div>
+
+    <div class="px-6 py-2">
+      <p class="text-base text-black-100/70">@{{ store.state.authUser.username }}</p>
     </div>
 
     <div class="flex flex-row justify-between gap-5 px-6 py-5 items-center">
@@ -63,6 +67,10 @@ export default {
     const blogs = ref('')
     const bookmarks = ref('')
 
+
+    const getUserDetails = () =>{
+      
+    }
 
     const getBlogs = async()=>{
       await axios.get(`http://localhost:3000/${id}/posts`)

@@ -1,5 +1,5 @@
 <template>
-  <section class="p-[32px] hidden xl:block max-w-[400px]">
+  <section class="p-[32px] hidden xl:block min-w-[400px] max-w-[400px]">
     <div class="flex flex-col gap-8">
         <div v-if="!signedIn" class="flex flex-row items-center gap-5">
             <router-link to="/signup" class="w-[260px] px-6 py-2 my-4 text-base font-medium text-center text-white rounded-full bg-purple focus:outline-none focus:ring focus:ring-violet-300">
@@ -16,6 +16,7 @@
           >
         </div>
         <UserDetails v-if="route.params.id" />
+        <Recommended />
         <SidebarFooter />
     </div>
   </section>
@@ -25,10 +26,11 @@
 import { useRoute } from 'vue-router';
 import { useStore } from 'vuex'
 import SidebarFooter from '@/components/SidebarFooter.vue'
+import Recommended from '@/components/Recommended.vue'
 import UserDetails from './UserDetails.vue'
 import { ref } from '@vue/reactivity';
 export default {
-components: { SidebarFooter, UserDetails}
+components: { SidebarFooter, UserDetails, Recommended}
 ,
 
 computed: {
