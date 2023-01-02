@@ -1,25 +1,33 @@
 <template>
-  <section class="py-[30px] px-4 lg:px-10 w-7xl max-w-7xl">
-    <div v-if="blogs.length">
-      <div v-for="blog in blogs" :key="blog._id">
+  
+    <div v-bind="containerProps" class="h-screen p-2 rounded w-full overflow-hidden">
+      <div v-bind="wrapperProps" class="w-full mx-auto">
+        <div v-for="{index, data} in list" :key="index" class="h-[180px] px-4 mb-4">
         <SingleBlog
-        :blog="blog"
+        :blog="data"
         />
+        </div>
       </div>
     </div>
-  </section>
+
 </template>
 
-<script>
+<script setup>
 import SingleBlog from '@/components/SingleBlog.vue';
+import Testing from '@/components/Testing.vue';
 import axios from 'axios'
 import { ref } from '@vue/reactivity';
+import { useVirtualList } from '@vueuse/core'
+import { computed } from 'vue';
 
-export default {
-    components: { SingleBlog },
 
-    setup() {
+    
+
+
         const blogs = ref('')
+        const {list, containerProps, wrapperProps} = useVirtualList(blogs, {
+          itemHeight: 204
+        })
 
         const getBlogs = async () => {
 
@@ -28,16 +36,15 @@ export default {
                 .then((data) => (blogs.value = data))
                 .catch((err) => console.log(err));
      
-                console.log(blogs.value[0]);
+                console.log(blogs.value[0], 'hh');
            
         }
         getBlogs()
+       
 
-
-        return { blogs }
-    }
     
-}
+
+
 </script>
 
 <style>

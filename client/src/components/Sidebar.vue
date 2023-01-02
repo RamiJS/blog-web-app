@@ -1,6 +1,6 @@
 <template>
   <section class="p-[32px] bg-red hidden xl:block">
-    <ul class="flex flex-col">
+    <ul class="flex flex-col  sticky top-8 ">
         <li class="pb-[164px]">
             <router-link to="/">
                 <img class="w-[36px] h-[36px]" src="@/assets/logos/logo.svg" alt="website logo">

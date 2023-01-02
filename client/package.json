@@ -12,6 +12,7 @@
     "@headlessui/tailwindcss": "^0.1.2",
     "@headlessui/vue": "^1.7.7",
     "@heroicons/vue": "^2.0.13",
+    "@vueuse/core": "^9.9.0",
     "autoprefixer": "^10",
     "axios": "^1.2.0",
     "core-js": "^3.8.3",

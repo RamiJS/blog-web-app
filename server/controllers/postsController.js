@@ -2,7 +2,11 @@ const Posts = require('../models/Posts')
 const User = require('../models/User')
 const UserComment = require('../models/CommentSchema')
 const jwt = require('jsonwebtoken')
+const { Storage } = require('@google-cloud/storage');
+const dotenv = require('dotenv');
+const Multer = require("multer");
 
+dotenv.config();
 
 module.exports.all_posts = async(req, res) => {
     let AllPosts = await Posts.find().select('-updatedAt -__v').populate('comments likedBy postedBy comments.postedBy').sort({createdAt: -1}) // .filter({isDeleted: false})
@@ -20,7 +24,6 @@ module.exports.one_post = async(req, res) => {
 
 // get posts by a single user
 module.exports.user_posts = async(req, res) => {
-    const token = req.cookies.jwt;
     var userId = req.params.id
 
         try {
@@ -31,23 +34,68 @@ module.exports.user_posts = async(req, res) => {
             console.log(err)
         } 
  }
- 
+
+let projectId = "clear-router-373416"
+let keyFilename = "./keyfile.json"
+
+// Creates a client
+const storage = new Storage({
+  projectId,
+  keyFilename
+});
+const bucket = storage.bucket('blogoty_profile');
 
 module.exports.upload_posts = async(req, res, next) => {
     const { content, title, brief } = req.body
     const userId = req.session.user._id;
-    console.log("🚀 ~ file: postsController.js:36 ~ module.exports.upload_posts=async ~ userId", userId)
-
-            try {
-                let postedBy = userId
-                const post = await Posts.create({ postedBy, content, title, brief});
-                res.status(201).json({ post: post._id,  postedBy})
-            } catch (err) {
-                res.status(404).send(err)
-                console.log(err);
-            }
+    // console.log("🚀 ~ file: postsController.js:36 ~ module.exports.upload_posts=async ~ userId", image)
+    let image = req.file;
+    try {
+        if (image) {
+          console.log("File found, trying to upload...");
+          const blob = bucket.file(image.originalname);
+          const blobStream = blob.createWriteStream();
+    
+          blobStream.on("finish", () => {
+            console.log("Success");
+            const imageUrl = `https://storage.googleapis.com/${bucket.name}/${image.originalname}`;
+            let postedBy = userId;
+            Posts.create({ postedBy, content, title, brief, image: imageUrl})
+              .then((post) => {
+                res.status(201).json({ post: post._id,  postedBy, image: imageUrl});
+              })
+              .catch((error) => {
+                res.status(500).send(error);
+              });
+          });
+          blobStream.end(image.buffer);
+        } else {
+          throw "error with img";
+        }
+      } catch (err) {
+        res.status(404).send(err)
+    }
 }
 
+
+module.exports.upload_image = async (req, res, next) => {
+  console.log("Made it /upload");
+  try {
+    if (req.file) {
+      console.log("File found, trying to upload...", req.file);
+      const blob = bucket.file(req.file.originalname);
+      const blobStream = blob.createWriteStream();
+
+      blobStream.on("finish", () => {
+        res.status(200).send("Success");
+        console.log("Success");
+      });
+      blobStream.end(req.file.buffer);
+    } else throw "error with img";
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
 
 module.exports.like = async(req, res, next) => {
 

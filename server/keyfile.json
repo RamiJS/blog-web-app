@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "clear-router-373416",
+  "private_key_id": "26ad9e30b18e9c60a08b0005b4fcc2ee51069d2f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC9mt16Zo96zBDN\nmjC496yeaAplj+aAlXGVnSCHBhID0pc5IR13xMWRcVycPwWRXqIYreUxW1L2nAJM\nzf915NlbnSFwcvl22tx/tDIWWnwgJZj9kyeFgxTohawf9SiIW4f4x0VRhNW9jUkz\nlan1KuIQz6Vy6ycdd48ph2iIzGrOnz92feqL/Nij3nR/yVqaVES5hgHP+ObTyFCM\nn0cTWwbtNeTjr9uD0oXiqMSRuDLC95TtlFcRfCmCdJUU/LWmmarD4gphje56V86Q\n8LTVkFGZ9asPnsd7RFV5hY0qD6VzNpvHb0+/bMCuLkDunfY1soQttg/MfBsofX4V\n6zSUvRe7AgMBAAECggEAEqVhNIFTiOL6oA2Szw3kVuuqYhSFuY14zxrVsRGiwed6\n4a5lBHtAZq48Sk1UUdh5nm2zhWgSv5fWDhGQFtr7mSvZtwJHkC2z04c4CcS6QjsQ\nUZegIlwiuT80Dyx/4PEHbSrDoWGr12lGkqEcRrUB6F9TSPrhLN+uH4pmeFWKB2ms\nQOgg228MIW2qobm2QdZQGeJPVmUafI2XFEZ1Fyd4pGOzQ/KHBMRQ4ECR1FSFqqLJ\ncZzr4ta7jf2NipORG7lVWXfvWKfMczlfX+c2OsgrNQ55WTawH6DycJsVam+uzXLx\nLRg2yDZ8KgQAHjU9YgyADTOUd3Q+0cGjXIV9VF4AOQKBgQDyAFZlY4hwNmBAnC4X\nsW2znyXoWbfVbpG7IM0mpwBYVMkuwkEQ0UFvuuRNt6EPlbKv0k5RduwioDl/Zeb9\ndZMUU5jNb9ylDm55TBFg9+rJELnApZ5JHFyE3eBXLrh32y334XqwROCbFGo8OtXp\n8JmG3DhK7CHaa/Fx7OYg4oLLDwKBgQDIkp50DkhV0cu8MewN0jKOE5EbJFUhscqt\nVqDbwvZ5iLir0TSF2Y8nh8tfV1sFLnFW2cydlbEtlSsYiebmu43VcYu85prM+cLc\nEfeDIjp8iA4aAwtdHKYI3srTValZzDymR7FXSgmwZ5eGntWb43f/Wx5LK7bUvF64\ns198uTSYlQKBgQCI/c3qiSSUOQPVr1OcT/FEzCOeWyNoq7XNU20uozzbw+s7D/Xb\nOkmroQVaRUfkVZ6YTxnMneBgXYkO6DWRZzxCNmx6ZwdlXD0HZxszZERBW7l7J4Xp\n5ycsg5laYPVFzApClx5nqCXpQ+47eCbdzjhqkkE/kFo9lftQvYUsOm1F2wKBgQCa\n4Iy2dSjqC9xUcAAlFACxsO5FlSKfqBgnDVOdHskQQ8DF+/+gs8RU9AjYkC3arGgc\ndoYH0UVFO4BRrHq+BGmbPdh3f2JdkSckpEMJ4W5kJvMsptkphyu2gcMAuY7RpmHW\nzFlmW+drbjKVYyTzAQzyA7w6s4C0eNhzqx66wpCYmQKBgHikobUdi/T//s0qmDVl\nFZT5Nor04AzBggIDcQBhBLDIpyqtrefPhtyEVEL4stBdf9iO2Igau2FukSJdAdti\n/qWGG+zVYVjpENipOndAOir+IzlT8u1HLiO5cLlDPp/Nx7QKi0QtQPWzKzuThtka\nYhZY/ky9eQEe1HuZx/JOw+3h\n-----END PRIVATE KEY-----\n",
+  "client_email": "blogotyapp@clear-router-373416.iam.gserviceaccount.com",
+  "client_id": "115464632772041484206",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/blogotyapp%40clear-router-373416.iam.gserviceaccount.com"
+}

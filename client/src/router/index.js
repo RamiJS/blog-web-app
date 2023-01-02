@@ -7,6 +7,7 @@ import SingleBlogView from '@/views/SingleBlogView.vue'
 import WriteBlogsView from '@/views/WriteBlogsView.vue'
 import BookMarksView from '@/views/BookMarksView.vue'
 import ProfileView from '@/views/ProfileView.vue'
+import img from '@/views/SendImage.vue'
 import store from '@/store/index';
 
 
@@ -36,6 +37,12 @@ const routes = [
       console.log('beforeEnter log' + ' ' + signedIn);
       if(signedIn == null) return { name: 'login' }
     }
+  },
+  {
+    path: '/img',
+    name: 'img',
+    component: img,
+    
   },
   {
     path: '/feed/:id',
