@@ -8,7 +8,7 @@ import WriteBlogsView from '@/views/WriteBlogsView.vue'
 import BookMarksView from '@/views/BookMarksView.vue'
 import ProfileView from '@/views/ProfileView.vue'
 import img from '@/views/SendImage.vue'
-import store from '@/store/index';
+import axios from 'axios'
 
 
 const routes = [
@@ -31,11 +31,16 @@ const routes = [
     path: '/feed',
     name: 'feed',
     component: UserFeedView,
-    beforeEnter: (to, from) => {
-      // ...
-      const signedIn = store.state.authUser.username
-      console.log('beforeEnter log' + ' ' + signedIn);
-      if(signedIn == null) return { name: 'login' }
+    beforeEnter: async(to, from) => {
+      try {
+        const response = await axios.get('http://localhost:3000/checkSession')
+        if (response.status === 200) {
+          console.log('user is signed in');
+        }
+      } catch (error) {
+        console.log("Error: user is not signed in yet");
+        return { name: 'login'}
+      }
     }
   },
   {
@@ -56,12 +61,16 @@ const routes = [
     path: '/writeblog',
     name: 'writeview',
     component: WriteBlogsView,
-    beforeEnter: (to, from) => {
-      // ...
-      const user = store.state.authUser
-      console.log('beforeEnter log' + ' ' + user);
-      if(user.username == null) return { name: 'login' }
-      else if(user.roles == 'user') return { name: 'feed' } 
+    beforeEnter: async(to, from) => {
+      try {
+        const response = await axios.get('http://localhost:3000/checkSession')
+        if (response.status === 200) {
+          console.log('user is signed in');
+        }
+      } catch (error) {
+        console.log("Error: user is not signed in yet");
+        return { name: 'login'}
+      }
     }
   },
   {
@@ -69,12 +78,16 @@ const routes = [
     name: 'bookmarks',
     component: BookMarksView,
     props: true,
-    beforeEnter: (to, from) => {
-      // ...
-      const user = store.state.authUser
-      console.log('beforeEnter log' + ' ' + user);
-      if(user.username == null) return { name: 'login' }
-      else if(user.roles == 'user') return { name: 'feed' } 
+    beforeEnter: async(to, from) => {
+      try {
+        const response = await axios.get('http://localhost:3000/checkSession')
+        if (response.status === 200) {
+          console.log('user is signed in');
+        }
+      } catch (error) {
+        console.log("Error: user is not signed in yet");
+        return { name: 'login'}
+      }
     }
   },
   {

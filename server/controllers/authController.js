@@ -149,3 +149,13 @@ module.exports.logout_get = (req, res) => {
         res.end()
     }
 }
+
+
+module.exports.check_session = (req, res) => {
+    const user = req.session.user
+    if(req.session && user) {
+        res.status(200).send({username: user.username, roles: user.roles})
+    } else {
+        res.status(400).send('User Session is Invalid')
+    }
+}

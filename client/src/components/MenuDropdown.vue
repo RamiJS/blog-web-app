@@ -4,12 +4,28 @@ import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import { PencilIcon, DocumentDuplicateIcon, UserCircleIcon} from "@heroicons/vue/24/outline"
 import { ChevronDownIcon, } from '@heroicons/vue/20/solid'
 import { useStore } from 'vuex'
+import axios from 'axios'
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const store = useStore();
+
+const logout = async() => {
+    try {
+      const response = await axios.delete("http://localhost:3000/logout");
+      if (response.status === 200) {
+        // redirect the user to the login page using vue router
+        router.push({ name: "login" });
+      }
+    } catch (error) {
+      console.log("Error: user is not signed in yet");
+    }
+} 
+
 
 const options = [
     {label: "profile", href: `/profile/${store.state.authUser.id}`, icon: PencilIcon},
-    {label: "sign out", href: "", icon: DocumentDuplicateIcon},
+    {label: "sign out", href: "", icon: DocumentDuplicateIcon, func: logout},
 ]
 
 
@@ -48,6 +64,7 @@ const options = [
             
             >
             <router-link
+            @click="item.func"
               :to="item.href"
               class="flex items-center w-full px-2 py-2 text-sm rounded-md text-black-100 ui-active:bg-purple ui-active:text-white group"
               >

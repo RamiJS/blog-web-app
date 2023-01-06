@@ -27,27 +27,42 @@
 <script>
 import { useStore } from 'vuex';
 import { ref, computed } from 'vue';
+import axios from 'axios';
 
 export default {
 
     setup() {
         const store = useStore();
         const user = store.state.authUser.username
+        const isLoggedIn = ref(false)
 
         const nav = [
             {label: 'About us'},
             {label: 'join us'},
         ]
 
-        const isLoggedIn = computed(() =>{
-            return store.state.authUser.username != null
-        })
+        // const isLoggedIn = computed(() =>{
+        //     return store.state.authUser.username != null
+        // })
     
+        const checkLogin = async() => {
+            try {
+            const response = await axios.get('http://localhost:3000/checkSession')
+            if (response.status === 200) {
+                isLoggedIn.value = true
+                console.log('user is signed in');
+            }
+            } catch (error) {
+                console.log("Error: user is not signed in yet", error);
+            }
+        }
+        checkLogin()
     
         return {
             nav,
             isLoggedIn,
-            user
+            user,
+            checkLogin
         }
     }
 }
