@@ -1,5 +1,5 @@
 <template>
-    <section class="py-[30px] px-4 lg:px-10 w-7xl max-w-7xl">
+    <section class="py-[30px] px-4 lg:px-10 w-full max-w-7xl">
         <div class="flex flex-col">
             <div class="flex flex-row items-center justify-between gap-5">
                 <div class="flex flex-row items-center gap-5">
@@ -25,6 +25,12 @@
                     v-html="blog.content">
                 </div>
             </div>
+            <div class="py-12">
+              <h3 class="text-xl font-semibold py-2">
+                Comments
+              </h3>
+             <ArticleComments />
+            </div>
         </div>
     </section>
   </template>
@@ -32,10 +38,12 @@
   <script>
   import axios from 'axios'
   import { ref } from '@vue/reactivity';
-import { useRoute } from 'vue-router';
+  import { useRoute } from 'vue-router';
   import { useStore } from 'vuex';
 import store from '@/store';
+import ArticleComments from '@/components/ArticleComments.vue';
   export default {
+  components: { ArticleComments },
       props: ['id'],
   
       setup() {

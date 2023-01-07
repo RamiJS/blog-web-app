@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="border-b border-black-100/30 dark:border-gray-700">
-            <ul class="flex flex-row  justify-around items-center -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+            <ul class="flex flex-row justify-around items-center -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
                 <li
                 class="transition ease-in-out mr-2 w-full hover:bg-black-100/10 cursor-pointer text-black-100/70 hover:text-black-100 duration-300"
                 :class="{active: title == selectedTitle}"

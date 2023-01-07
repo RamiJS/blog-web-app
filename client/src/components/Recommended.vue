@@ -1,7 +1,7 @@
 <template>
   <section class="flex flex-col gap-5">
     <h2 class="text-lg font-bold pb-2">More from Blogoty:</h2>
-    <div v-for="article in articles.slice(0, 3)" :key="article._id" class="flex flex-row gap-5">
+    <router-link v-for="article in articles.slice(0, 3)" :key="article._id" :to="{ name: 'blog', params: { id: article._id } }" class="flex flex-row gap-5">
         <img :src="article.image" class="w-16 h-16" alt="">
         <div class="flex flex-col">
             <div class="flex flex-row gap-3">
@@ -10,7 +10,7 @@
             </div>
             <p>{{article.title}}</p>
         </div>
-    </div>
+    </router-link>
 
   </section>
 </template>

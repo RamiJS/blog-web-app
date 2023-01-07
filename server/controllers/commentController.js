@@ -5,7 +5,6 @@ const Posts = require('../models/Posts')
 
 
 module.exports.comment = async(req, res, next) => {
-    const token = req.cookies.jwt;
     const { id } = req.params
     const { comment } = req.body
     const user = req.session.user._id
@@ -35,7 +34,7 @@ module.exports.get_comments = async(req, res, next) => {
     const { id } = req.params;
 
     try {
-        let postComments = await UserComment.find({postId: id})
+        let postComments = await UserComment.find({postId: id}).populate('postedBy')
         res.status(200).json(postComments)
     }
     catch(err) {

@@ -5,8 +5,11 @@
       <img class="w-[124px] h-[124px] absolute bottom-2 left-5 rounded-full" :src="store.state.authUser.image" alt="profile img">
     </div>
 
-    <div class="px-6 py-2">
-      <p class="text-base text-black-100/70">@{{ store.state.authUser.username }}</p>
+    <div class="px-6 py-2 flex flex-row w-full justify-between items-center">
+        <p class="text-base text-black-100/70">@{{ store.state.authUser.username }}</p>
+        <button class="bg-purple py-2 px-5 rounded-full text-white">
+            Follow
+        </button>
     </div>
 
     <div class="flex flex-row justify-between gap-5 px-6 py-5 items-center">
@@ -14,11 +17,6 @@
           <p class="text-black-100/80">Following: <span class="text-black-100">200</span></p>
           <p class="text-black-100/80">Followers: <span class="text-black-100">1350</span></p>
         </div>
-      <div>
-        <button class="bg-purple py-2 px-5 rounded-full text-white">
-          Follow
-        </button>
-      </div>
     </div>
    
     <TabsWrapper>

@@ -6,7 +6,7 @@
                 <img class="w-[36px] h-[36px]" src="@/assets/logos/logo.svg" alt="website logo">
             </router-link>
         </li>
-        <li v-for="item in navItems" :key="item.index" class="py-6 mx-auto">
+        <li v-for="item in navItems" :key="item.index" class="py-6 mx-auto" active-class="router-link-active">
             <router-link :to="item.href" class="transition duration-300 ease-in-out hover:text-purple text-black-100/70">
                 <component 
                   :is="item.icon"
@@ -62,5 +62,7 @@ export default {
 </script>
 
 <style>
-
+/* .router-link-active {
+  color: green;
+} */
 </style>
