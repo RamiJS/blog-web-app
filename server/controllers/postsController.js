@@ -8,6 +8,8 @@ const Multer = require("multer");
 
 dotenv.config();
 
+console.log(process.env.GOOGLE_APPLICATION_CREDENTIALS);
+
 module.exports.all_posts = async(req, res) => {
     let AllPosts = await Posts.find().select('-updatedAt -__v').populate('comments likedBy postedBy comments.postedBy').sort({createdAt: -1}) // .filter({isDeleted: false})
     console.log(AllPosts);
@@ -35,9 +37,8 @@ module.exports.user_posts = async(req, res) => {
         } 
  }
 
-let projectId = "clear-router-373416"
-let keyFilename = "./keyfile.json"
-
+let projectId = process.env.GOOGLE_PROJECT_ID
+let keyFilename = process.env.GOOGLE_APPLICATION_CREDENTIALS
 // Creates a client
 const storage = new Storage({
   projectId,

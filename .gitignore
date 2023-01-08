@@ -2,3 +2,5 @@
 /client/node_modules
 node_modules
 .txt
+/server/.env
+/server/keyfile.json
