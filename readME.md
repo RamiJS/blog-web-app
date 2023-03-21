@@ -4,28 +4,28 @@
 This app is still under development
 
 # Backend
-# User Authentication
+## User Authentication
 - Session authentication
 - Login 
 - Registration 
 - Sign out of the application 
 
-# User Profiles 
+## User Profiles 
 - Ability to update profile including the username, email, profile picture, and profile header or banner 
 - Visit other profiles 
 - See other profiles' likes and blogs 
 
-# Posts 
+## Posts 
 - Ability to post, update, and delete posts 
 - Like and unlike posts 
 - Comment on posts 
 - Bookmark posts 
 
-# Images 
+## Images 
 - Ability to upload images to Google Cloud 
 - Ability to update and delete images 
 
-# Database 
+## Database 
 - Everything connected to MongoDB 
 
 # Frontend
