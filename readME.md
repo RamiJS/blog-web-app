@@ -29,40 +29,25 @@ This app is still under development
 - Everything connected to MongoDB 
 
 # Frontend
-// Home Page
+## Home Page
 - Recommended articles (randomly generated for now)
 - Footer (component)
 - Signup and Login redirecting (component will only show if not signed in)
 
-// Signup Page
+## Signup Page
 - Form to create a new account 
 
-// Login Page
+## Login Page
 - Form to log in 
 - Remember me function 
 
-// Sidebar and Navbar 
+## Sidebar and Navbar 
 - Finished working on sidebar and navbar 
 - Make them responsive 
 - Hide sidebar in specific routes like home, signup, and login, etc. 
 - Show navbar only on mobile and home screen 
 
-// Profile Page
+## Profile Page
 - Show user details like name, email, etc.
 - Show user likes 
 - Show user articles 
-
-// Focus Mode Function 
-- To help users focus while reading articles 
-
-// Dark Mode Function 
-- To provide a more comfortable reading experience in low light conditions 
-
-// Other Features 
-- Ability to like articles 
-- Ability to comment on articles 
-- Ability to bookmark articles 
-- Ability to update profile picture and header 
-- Visit other profiles and view their articles 
-- Sign out of the application
-
